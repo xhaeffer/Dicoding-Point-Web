@@ -1,0 +1,24 @@
+{
+    "id":"point",
+    "start_url":"./index.html",
+    "name":"Point!",
+    "short_name":"Point!",
+    "description":"Explore the World of Food, Conquer Your Taste Buds",
+    "display":"standalone",
+    "background_color":"#f0f0f0",
+    "theme_color":"#028446",
+    "icons": [
+        { 
+          "purpose":"maskable",
+          "sizes":"512x512",
+          "src":"/icons/icon512_maskable.png",
+          "type":"image/png"
+        },
+        { 
+          "purpose":"any",
+          "sizes":"512x512",
+          "src":"/icons/icon512_rounded.png",
+          "type":"image/png"
+        }
+    ]
+}

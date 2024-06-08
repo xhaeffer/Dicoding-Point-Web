@@ -1,0 +1,48 @@
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: rgba(0,0,0,0.06);
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+}
+
+.skip-link:focus {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: auto;
+  height: auto;
+  padding: 10px 20px;
+  text-decoration: none;
+  background-color: white;
+  color: black;
+  z-index: 100;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 35px;
+  min-height: 50vh;
+  font-family: "aktiv-grotesk-std", Arial, sans-serif;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+@media screen and (min-width: 630px) {
+  @media screen and (min-width: 1024px) {
+  }
+}
+
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css);
