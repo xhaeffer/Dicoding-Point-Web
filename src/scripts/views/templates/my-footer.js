@@ -1,16 +1,15 @@
 class MyFooter extends HTMLElement {
   constructor() {
     super();
-    const shadow = this.attachShadow({ mode: 'open' });
 
     const style = document.createElement('style');
     style.textContent = this.getStyle();
-    shadow.appendChild(style);
+    this.appendChild(style);
 
     const myFooter = document.createElement('div');
     myFooter.className = 'my-footer';
     myFooter.innerHTML = this.render();
-    shadow.appendChild(myFooter);
+    this.appendChild(myFooter);
   }
 
   render() {

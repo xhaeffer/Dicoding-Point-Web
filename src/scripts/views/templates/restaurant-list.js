@@ -1,23 +1,24 @@
 import { gsap } from 'gsap';
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 import restaurantApi from '../../data/restaurant-api';
-import FavoriteRestaurant from '../../data/db-api';
+import FavoriteRestaurant from '../../data/favRestaurant-api';
 import API_ENDPOINT from '../../globals/api-endpoint';
 import { errorTemplate, offlineTemplate, noDataTemplate } from './items';
 
 class RestaurantsList extends HTMLElement {
   constructor() {
     super();
-    this.shadow = this.attachShadow({ mode: 'open' });
 
     const style = document.createElement('style');
     style.textContent = this.getStyle();
-    this.shadow.appendChild(style);
+    this.appendChild(style);
 
     this.restaurants = document.createElement('div');
     this.restaurants.className = 'restaurants';
     this.render();
-    this.shadow.appendChild(this.restaurants);
+    this.appendChild(this.restaurants);
   }
 
   async getRestaurantsList(dataSource) {
@@ -58,12 +59,12 @@ class RestaurantsList extends HTMLElement {
           city,
           rating,
           pictureId,
-          img = API_ENDPOINT.GET_RESTAURANT_IMG(pictureId),
+          img = API_ENDPOINT.GET_RESTAURANT_IMG('medium', pictureId),
         } = restaurant;
 
         const restaurantItem = `
           <div class="restaurant-item" id="restaurant-${id}" tabindex="0">
-            <img src="${img}" alt="${name}">
+            <img class="lazyload" src="${img}" alt="${name}">
               <div class="restaurant-info">
                 <h2>${name}</h2>
                 <p>${city}</p>        
@@ -77,7 +78,7 @@ class RestaurantsList extends HTMLElement {
         this.getEventListeners();
       });
     } catch (error) {
-      this.shadow.removeChild(this.restaurants);
+      this.removeChild(this.restaurants);
 
       const errorHandler = document.createElement('div');
 
@@ -89,7 +90,7 @@ class RestaurantsList extends HTMLElement {
         errorHandler.innerHTML = errorTemplate(error);
       }
 
-      this.shadow.appendChild(errorHandler);
+      this.appendChild(errorHandler);
     }
   }
 

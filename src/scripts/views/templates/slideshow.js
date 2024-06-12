@@ -1,16 +1,15 @@
 class SlideShow extends HTMLElement {
   constructor() {
     super();
-    const shadow = this.attachShadow({ mode: 'open' });
 
     const style = document.createElement('style');
     style.textContent = this.getStyle();
-    shadow.appendChild(style);
+    this.appendChild(style);
 
     this.slideShow = document.createElement('div');
     this.slideShow.className = 'slideshow';
     this.slideShow.innerHTML = this.render();
-    shadow.appendChild(this.slideShow);
+    this.appendChild(this.slideShow);
 
     this.slideIndex = 1;
     this.showSlides(this.slideIndex);
@@ -22,11 +21,26 @@ class SlideShow extends HTMLElement {
   }
 
   render() {
+    const slides = [
+      { src: './images/hero-image_1', alt: 'Slide 1' },
+      { src: './images/hero-image_2', alt: 'Slide 2' },
+      { src: './images/hero-image_3', alt: 'Slide 3' },
+      { src: './images/hero-image_4', alt: 'Slide 4' },
+    ];
+
+    const slideHTML = slides.map((slide) => `
+      <picture class="slide">
+        <source media="(min-width: 1024px)" type="image/webp" srcset="${slide.src}.webp" />
+        <source media="(min-width: 630px)" type="image/webp" srcset="${slide.src}-medium.webp" />
+        <source media="(min-width: 0px)" type="image/webp" srcset="${slide.src}-small.webp" />
+        <source type="image/webp" srcset="${slide.src}.webp" />
+        <source type="image/jpeg" srcset="${slide.src}.jpg" />
+        <img src="${slide.src}.jpg" alt="${slide.alt}" />
+      </picture>
+    `).join('');
+
     return `
-      <img class="slide" src="./images/heros/hero-image_1.jpg" alt="Slide 1" />
-      <img class="slide" src="./images/heros/hero-image_2.jpg" alt="Slide 2" />
-      <img class="slide" src="./images/heros/hero-image_3.jpg" alt="Slide 3" />
-      <img class="slide" src="./images/heros/hero-image_4.jpg" alt="Slide 4" />
+      ${slideHTML}
       <button class="prev" aria-label="Previous Slide">&#10094;</button>
       <button class="next" aria-label="Next Slide">&#10095;</button>
     `;
@@ -43,14 +57,19 @@ class SlideShow extends HTMLElement {
       }
       
       .slideshow > .slide {
-        display: block;
+        display: flex;
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
         transition: all 0.5s linear;
+      }
+
+      .slideshow > .slide > img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
       }
       
       .slideshow > .prev,
@@ -111,7 +130,7 @@ class SlideShow extends HTMLElement {
   }
 
   showSlides(n) {
-    const slides = this.shadowRoot.querySelectorAll('.slideshow > .slide');
+    const slides = this.slideShow.querySelectorAll('.slide');
 
     if (n > slides.length) {
       this.slideIndex = 1;

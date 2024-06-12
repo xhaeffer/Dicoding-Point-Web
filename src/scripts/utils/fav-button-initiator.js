@@ -1,4 +1,4 @@
-import FavoriteRestaurant from '../data/db-api';
+import favRestaurantApi from '../data/favRestaurant-api';
 import { favoriteButtonTemplate, favoritedButtonTemplate } from '../views/templates/items';
 
 const FavoriteButtonInitiator = {
@@ -20,7 +20,7 @@ const FavoriteButtonInitiator = {
   },
 
   async _isFavorite(id) {
-    const restaurant = await FavoriteRestaurant.getFavorite(id);
+    const restaurant = await favRestaurantApi.getFavorite(id);
     return !!restaurant;
   },
 
@@ -30,7 +30,7 @@ const FavoriteButtonInitiator = {
     let favButton = this._favoriteButton.getRootNode();
     favButton = favButton.querySelector('#favButton');
     favButton.addEventListener('click', async () => {
-      await FavoriteRestaurant.addFavorite(this._restaurant);
+      await favRestaurantApi.addFavorite(this._restaurant);
       this._renderButton();
     });
   },
@@ -41,7 +41,7 @@ const FavoriteButtonInitiator = {
     let favButton = this._favoriteButton.getRootNode();
     favButton = favButton.querySelector('#favButton');
     favButton.addEventListener('click', async () => {
-      await FavoriteRestaurant.deleteFavorite(this._restaurant.id);
+      await favRestaurantApi.deleteFavorite(this._restaurant.id);
       this._renderButton();
     });
   },

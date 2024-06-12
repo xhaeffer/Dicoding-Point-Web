@@ -1,3 +1,6 @@
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+
 import restaurantApi from '../../data/restaurant-api';
 import UrlParser from '../../routes/url-parser';
 import API_ENDPOINT from '../../globals/api-endpoint';
@@ -13,16 +16,15 @@ import {
 class RestaurantInfo extends HTMLElement {
   constructor() {
     super();
-    this.shadow = this.attachShadow({ mode: 'open' });
 
     const style = document.createElement('style');
     style.textContent = this.getStyle();
-    this.shadow.appendChild(style);
+    this.appendChild(style);
 
     this.restaurant = document.createElement('div');
     this.restaurant.className = 'restaurant';
     this.render();
-    this.shadow.appendChild(this.restaurant);
+    this.appendChild(this.restaurant);
   }
 
   async getRestaurant(id) {
@@ -61,8 +63,12 @@ class RestaurantInfo extends HTMLElement {
         categories,
         menus,
         customerReviews,
-        img = API_ENDPOINT.GET_RESTAURANT_IMG(pictureId),
       } = restaurantData;
+      const img = {
+        small: API_ENDPOINT.GET_RESTAURANT_IMG('small', pictureId),
+        medium: API_ENDPOINT.GET_RESTAURANT_IMG('medium', pictureId),
+        large: API_ENDPOINT.GET_RESTAURANT_IMG('large', pictureId),
+      };
 
       this.restaurant.innerHTML = `
         <div class="restaurant-info">
@@ -83,9 +89,13 @@ class RestaurantInfo extends HTMLElement {
           </div>
         </div>
 
-        <div class="restaurant-img">
-          <img src="${img}" alt="${name}">
-        </div>
+        <picture class="restaurant-img lazyload">
+          <source media="(min-width: 1024px)" type="image/jpeg" srcset="${img.large}" />
+          <source media="(min-width: 630px)" type="image/jpeg" srcset="${img.medium}" />
+          <source media="(min-width: 0px)" type="image/jpeg" srcset="${img.small}" />
+          <source type="image/jpeg" srcset="${img.large}" />
+          <img src="${img.large}" alt="${name}" />
+        </picture>
 
         <div class="restaurant-description">
           <div class="restaurant-card">
@@ -132,7 +142,7 @@ class RestaurantInfo extends HTMLElement {
         },
       });
     } catch (error) {
-      this.shadow.removeChild(this.restaurant);
+      this.removeChild(this.restaurant);
 
       const errorHandler = document.createElement('div');
 
@@ -144,7 +154,7 @@ class RestaurantInfo extends HTMLElement {
         errorHandler.innerHTML = errorTemplate(error);
       }
 
-      this.shadow.appendChild(errorHandler);
+      this.appendChild(errorHandler);
     }
   }
 

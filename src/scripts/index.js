@@ -10,7 +10,7 @@ import './views/templates/restaurant-list';
 import './views/templates/restaurant-info';
 import './views/templates/my-footer';
 
-const menuBar = document.querySelector('menu-bar').shadowRoot;
+const menuBar = document.querySelector('menu-bar');
 
 const app = new App({
   button: menuBar.querySelector('#hamburger'),

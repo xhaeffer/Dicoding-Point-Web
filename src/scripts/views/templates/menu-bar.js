@@ -1,16 +1,14 @@
 class MenuBar extends HTMLElement {
   constructor() {
     super();
-    const shadow = this.attachShadow({ mode: 'open' });
-
     const style = document.createElement('style');
     style.textContent = this.getStyle();
-    shadow.appendChild(style);
+    this.appendChild(style);
 
     const menu = document.createElement('div');
     menu.className = 'menu';
     menu.innerHTML = this.render();
-    shadow.appendChild(menu);
+    this.appendChild(menu);
   }
 
   render() {
