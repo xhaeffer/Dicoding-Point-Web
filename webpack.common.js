@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { InjectManifest } = require('workbox-webpack-plugin');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -15,10 +16,12 @@ module.exports = {
     clean: true,
   },
   optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
     splitChunks: {
       chunks: 'all',
-      minSize: 10000,
-      maxSize: 70000,
+      minSize: 20000,
+      maxSize: 50000,
       minChunks: 1,
       maxAsyncRequests: 30,
       maxInitialRequests: 30,
@@ -85,6 +88,5 @@ module.exports = {
       ],
       overrideExtension: true,
     }),
-
   ],
 };

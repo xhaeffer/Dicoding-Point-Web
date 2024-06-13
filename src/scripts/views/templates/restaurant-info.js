@@ -94,7 +94,7 @@ class RestaurantInfo extends HTMLElement {
           <source media="(min-width: 630px)" type="image/jpeg" srcset="${img.medium}" />
           <source media="(min-width: 0px)" type="image/jpeg" srcset="${img.small}" />
           <source type="image/jpeg" srcset="${img.large}" />
-          <img src="${img.large}" alt="${name}" />
+          <img data-src="${img.large}" alt="${name}" />
         </picture>
 
         <div class="restaurant-description">
@@ -160,8 +160,6 @@ class RestaurantInfo extends HTMLElement {
 
   getStyle() {
     return `
-      @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css);
-
       .restaurant {
         display: flex;
         flex-direction: column;

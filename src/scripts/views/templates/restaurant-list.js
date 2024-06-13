@@ -64,7 +64,7 @@ class RestaurantsList extends HTMLElement {
 
         const restaurantItem = `
           <div class="restaurant-item" id="restaurant-${id}" tabindex="0">
-            <img class="lazyload" src="${img}" alt="${name}">
+            <img class="lazyload" data-src="${img}" alt="${name}">
               <div class="restaurant-info">
                 <h2>${name}</h2>
                 <p>${city}</p>        

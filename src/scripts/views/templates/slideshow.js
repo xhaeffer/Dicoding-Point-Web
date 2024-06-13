@@ -35,7 +35,7 @@ class SlideShow extends HTMLElement {
         <source media="(min-width: 0px)" type="image/webp" srcset="${slide.src}-small.webp" />
         <source type="image/webp" srcset="${slide.src}.webp" />
         <source type="image/jpeg" srcset="${slide.src}.jpg" />
-        <img src="${slide.src}.jpg" alt="${slide.alt}" />
+        <img data-src="${slide.src}.jpg" alt="${slide.alt}" />
       </picture>
     `).join('');
 
