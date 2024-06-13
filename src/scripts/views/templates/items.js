@@ -3,7 +3,7 @@ const favoriteButtonTemplate = () => `
     aria-label="add restaurant to favorite"
     id="favButton"
     class="fav-button"
-    style="border:none; font-size: 30px; background-color: transparent; cursor: pointer;"
+    style="border:none; font-size: 44px; background-color: transparent; cursor: pointer;"
   >
     <i class="fa-regular fa-heart" style="color: #ff496c;" aria-hidden="true"></i>
   </button>
@@ -14,7 +14,7 @@ const favoritedButtonTemplate = () => `
     aria-label="remove restaurant from favorite"
     id="favButton"
     class="fav-button"
-    style="border:none; font-size: 30px; background-color: transparent; cursor: pointer;"
+    style="border:none; font-size: 44px; background-color: transparent; cursor: pointer;"
   >
     <i class="fa-solid fa-heart" style="color: #ff496c; aria-hidden="true""></i>
   </button>

@@ -75,16 +75,16 @@ class RestaurantInfo extends HTMLElement {
           <div class="restaurant-card">
             <div class="restaurant-identity">
               <div class="restaurant-data">
-                <h1 style="margin:0">${name}</h1>
-                <p style="margin:0">⭐️ <b>${rating} | ${customerReviews.length} ulasan</b></p>
+                <h1>${name}</h1>
+                <p>⭐️ <b>${rating} | ${customerReviews.length} ulasan</b></p>
               </div>
               <div class="add-favorite" id="addFav">
                 ${favoriteButtonTemplate()}
               </div>
             </div>
             <div class="restaurant-identity">
-              <p style="margin:30px 0 0">Lokasi:<br> ${address}<br>${city}</p>
-              <p style="margin:30px 0 0">Kategori:<br>${categories.map((category) => category.name).join(', ')}</p>
+              <p>Lokasi:<br> ${address}<br>${city}</p>
+              <p>Kategori:<br>${categories.map((category) => category.name).join(', ')}</p>
             </div>
           </div>
         </div>
@@ -184,6 +184,15 @@ class RestaurantInfo extends HTMLElement {
         justify-content: space-between;
         gap: 40px;
         text-align: left;
+      }
+
+      .restaurant > .restaurant-info > .restaurant-card > .restaurant-identity > p {
+        margin: 30px 0 0;
+      }
+
+      .restaurant > .restaurant-info > .restaurant-card > .restaurant-identity > .restaurant-data > h1,
+      .restaurant > .restaurant-info > .restaurant-card > .restaurant-identity > .restaurant-data > p {
+        margin: 0;
       }
 
       .restaurant > .restaurant-info > .restaurant-card > * > .add-favorite {
