@@ -15,7 +15,7 @@ class MyFooter extends HTMLElement {
   render() {
     return `
       <a href="#" class="logo"> 
-        <img src="./images/logo.png" width="85" alt="Point! Logo" />
+        <img src="./images/logo-small.webp" width="85" alt="Point! Logo" />
       </a>  
       <div class="copyright">
         <p>&copy; 2024 - Point!</p>

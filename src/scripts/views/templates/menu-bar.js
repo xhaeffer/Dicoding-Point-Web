@@ -15,7 +15,7 @@ class MenuBar extends HTMLElement {
     return `
       <div class="menu-bar">
         <a href="#/explore-us" class="logo"> 
-          <img src="./images/logo.png" width="75" alt="Point! Logo" />
+          <img src="./images/logo-small.webp" width="75" alt="Point! Logo" />
         </a>        
         <button class="hamburger" id="hamburger" aria-label="Toggle Navigation">
           ☰

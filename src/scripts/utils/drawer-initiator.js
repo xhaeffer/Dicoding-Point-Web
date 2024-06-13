@@ -1,29 +1,26 @@
 const DrawerInitiator = {
   init({ button, drawer, content }) {
-    const mediaQuery = window.matchMedia('(min-width: 630px)');
-    const menuLinks = drawer.querySelectorAll('a');
+    let isLargeScreen = window.matchMedia('(min-width: 630px)').matches;
 
     button.addEventListener('click', () => {
       this._toggleDrawer(drawer);
     });
 
-    menuLinks.forEach((menuLink) => {
-      menuLink.addEventListener('click', () => {
-        if (mediaQuery.matches) {
-          return;
-        }
-
-        this._closeDrawer(drawer);
-      });
+    drawer.addEventListener('click', (event) => {
+      if (!isLargeScreen && event.target.tagName === 'A') {
+        this._toggleDrawer(drawer);
+      }
     });
 
     content.addEventListener('click', () => {
-      if (mediaQuery.matches) {
-        return;
+      if (!isLargeScreen) {
+        this._closeDrawer(drawer);
       }
-
-      this._closeDrawer(drawer);
     });
+
+    new ResizeObserver(() => {
+      isLargeScreen = window.matchMedia('(min-width: 630px)').matches;
+    }).observe(document.body);
   },
 
   _toggleDrawer(drawer) {
