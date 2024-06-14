@@ -39,14 +39,14 @@ Menjadi Front-End Web Developer Expert - Dicoding Indonesia<br>
   - Code Splitting with SplitChunk technique.
   - Web Vitals Metric Score (FCP < 2.5s, FID/TBT < 100ms, FID/TBT < 100ms).
 
-  ## Coming Soon
-  - Better UI/UX:
-    - Skeleton UI.
-    - A loading indicator when data is being loaded from the server.
-    - Display better information/feedback if the HTTP request results in a failure.
-  - New Feature:
-    - A feature to provide customer reviews on the details page.
-    - A feature to search & filter some restaurants (Home & Favorite).
+## Coming Soon
+- Better UI/UX:
+  - Skeleton UI.
+  - A loading indicator when data is being loaded from the server.
+  - Display better information/feedback if the HTTP request results in a failure.
+- New Feature:
+  - A feature to provide customer reviews on the details page.
+  - A feature to search & filter some restaurants (Home & Favorite).
   - More Content!
   - More Optimization!
   - Another Automation Testing!
