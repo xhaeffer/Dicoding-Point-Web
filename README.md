@@ -47,6 +47,6 @@ Menjadi Front-End Web Developer Expert - Dicoding Indonesia<br>
 - New Feature:
   - A feature to provide customer reviews on the details page.
   - A feature to search & filter some restaurants (Home & Favorite).
-  - More Content!
-  - More Optimization!
-  - Another Automation Testing!
+- More Content!
+- More Optimization!
+- Another Automation Testing!
